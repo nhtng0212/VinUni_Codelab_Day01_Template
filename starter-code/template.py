@@ -261,9 +261,9 @@ def retry_with_backoff(
     while True:
         try:
             return fn()
-        except Exception as e:
+        except Exception:
             if attempt >= max_retries:
-                raise e
+                raise
             delay = base_delay * (2**attempt)
             time.sleep(delay)
             attempt += 1
